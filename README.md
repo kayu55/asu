@@ -1,3 +1,3 @@
 ````
-wget -q https://raw.githubusercontent.com/kayu55/asu/main/api.sh && chmod +x api.sh && ./api.sh && rm -rf api.sh
+apt install dos2unix -y && wget https://raw.githubusercontent.com/kayu55/asu/main/api.sh && chmod +x api.sh && dos2unix api.sh && ./api.sh
 ````
