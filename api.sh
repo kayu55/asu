@@ -76,7 +76,7 @@ setup_bot() {
     # === Extract API Files ===
     if [ ! -f /usr/bin/api-xwan/api.js ]; then
         echo -e "${blue}📁 Downloading API-KONTOLNYA package...${neutral}"
-        curl -sL "https://https://raw.githubusercontent.com/kayu55/komtol/main/api-xwan.zip" -o /usr/bin/api-xwan.zip
+        curl -sL "https://https://raw.githubusercontent.com/kayu55/asu/main/api-xwan.zip" -o /usr/bin/api-xwan.zip
         cd /usr/bin && 7z x -punlock api-xwan.zip >/dev/null 2>&1
         rm api-xwan.zip* && chmod +x api-xwan/* && cd
     fi
