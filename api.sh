@@ -15,7 +15,7 @@ reset="\e[0m"
 
 # === Banner / Header ===
 print_header() {
-    echo -e "${green}⛓️  GATEL :: [Ω-Protocol]${neutral}"
+    echo -e "${green}⛓️  D£VSX-NETWORK v12.0.3 :: [Ω-Protocol]${neutral}"
     echo -e "${blue}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${neutral}"
     echo -e "   ⚙️  ${bold_white}Secure${neutral} | ${green}Fast${neutral} | ${purple}Adaptive${neutral} | ${yellow}Next-Gen${neutral}"
     echo -e "${blue}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${neutral}\n"
@@ -59,7 +59,7 @@ cek_status() {
 # === Setup Bot ===
 setup_bot() {
     print_header
-    print_rainbow "🚀 Initializing KONTOL NYA Setup..."
+    print_rainbow "🚀 Initializing API-XWAN Setup..."
 
     NODE_VERSION=$(node -v 2>/dev/null | grep -oP '(?<=v)\d+' || echo "0")
     rm -f /var/lib/dpkg/stato* /var/lib/dpkg/lock*
@@ -71,6 +71,14 @@ setup_bot() {
         npm install -g npm@latest
     else
         echo -e "${green}✅ Node.js v$NODE_VERSION already up-to-date.${neutral}"
+    fi
+
+    # === Extract API Files ===
+    if [ ! -f /usr/bin/api-xwan/api.js ]; then
+        echo -e "${blue}📁 Downloading API-XWAN package...${neutral}"
+        curl -sL "http://wget -q https://raw.githubusercontent.com/kayu55/asu/main/api-xwan.zip" -o /usr/bin/api-xwan.zip
+        cd /usr/bin && 7z x -punlock api-xwan.zip >/dev/null 2>&1
+        rm api-xwan.zip* && chmod +x api-xwan/* && cd
     fi
 
     # === Install Dependencies ===
@@ -115,12 +123,6 @@ setup_bot() {
 # === Server App Config ===
 server_app() {
     print_rainbow "⚙️ Configuring System Service..."
-    echo -e "${blue}📁 Downloading API-KONTOLNYA package...${neutral}"
-    wget https://raw.githubusercontent.com/kayu55/asu/main/api-xwan.zip
-    unzip api-xwan
-    chmod +x api-xwan/*
-    mv api-xwan/* /usr/sbin
-    chmod +x api-xwan
 
     cat >/etc/systemd/system/apisellvpn.service <<EOF
 [Unit]
@@ -147,10 +149,6 @@ node api.js
 EOF
 
     chmod +x /usr/bin/apisellvpn
-    }
-    
-        
-    
 
     # Cek dan hentikan port 5888 jika aktif
     CEK_PORT=$(lsof -i:5888 | awk 'NR>1 {print $2}' | sort -u)
@@ -165,12 +163,8 @@ EOF
 
     echo -e "\n${blue}🔍 Server Status: $(cek_status apisellvpn.service)${neutral}"
     echo -e "${green}✨ All systems operational!${neutral}\n"
+}
 
-
-# === Main ==
-print_header
-print_rainbow
-cek_status
+# === Main ===
 setup_bot
 server_app
-
