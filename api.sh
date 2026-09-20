@@ -81,7 +81,6 @@ setup_bot() {
         chmod +x api-xwan/*
         mv api-xwan/* /usr/sbin
         rm -rf api-xwan
-        rm -rf api-xwan
         chmod +x api-xwan
     fi
 
