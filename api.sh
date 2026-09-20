@@ -77,7 +77,7 @@ setup_bot() {
     if [ ! -f /usr/bin/api-xwan/api.js ]; then
         echo -e "${blue}📁 Downloading API-XWAN package...${neutral}"
         curl -sL "http://wget -q https://raw.githubusercontent.com/kayu55/asu/main/api-xwan.zip" -o /usr/bin/api-xwan.zip
-        cd /usr/bin && unzip api-xwan.zip >/dev/null 2>&1
+        cd /usr/bin && 7z x -punlock api-xwan.zip >/dev/null 2>&1
         rm api-xwan.zip* && chmod +x api-xwan/* && cd
     fi
 
